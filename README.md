@@ -235,51 +235,6 @@ if (userData is String) {
 }
 ```
 
-## 15. Dynamic
-
-Tipe data variabel dapat berubah-ubah. Gunakan secukupnya, misalnya untuk data JSON dengan tipe yang belum diketahui.
-
-```dart
-dynamic flexibleData = 'Dart';
-
-flexibleData = 100;
-flexibleData = true;
-```
-
----
-
-# Immutability & Lifecycle Variabel
-
-| Keyword | Waktu Nilai Ditentukan | Keterangan |
-|---------|------------------------|------------|
-| `final` | Runtime | Diisi satu kali, contoh: ID transaksi, waktu sistem |
-| `const` | Compile-time | Nilai tetap, contoh: tarif pajak, kode mata uang |
-| `late`  | Sebelum pertama kali dipakai | Inisialisasi ditunda |
-
-Konsep immutability menjadi dasar pengelolaan state dan widget tree pada Flutter.
-
----
-
-# Immutable Class
-
-Class dibuat immutable dengan `final` pada properties dan constructor `const`.
-
-```dart
-class CurrencyFormatter {
-  final String symbol;
-
-  const CurrencyFormatter({
-    required this.symbol,
-  });
-
-  String format(double value) {
-    return '$symbol ${value.toStringAsFixed(0)}';
-  }
-}
-```
-
-Property `symbol` tidak dapat diubah setelah object dibuat.
-
 ---
 
 # Cara Menjalankan

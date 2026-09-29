@@ -186,7 +186,6 @@ void main() {
   // OBJECT
 
   Object userData = 'Fadia';
-
   if (userData is String) {
     print(userData.toUpperCase());
   }
@@ -198,54 +197,4 @@ void main() {
   }
 
 
-  // DYNAMIC
-
-  dynamic flexibleData = 'Dart';
-
-  print(flexibleData);
-
-  flexibleData = 100;
-
-  print(flexibleData);
-
-  flexibleData = true;
-
-  print(flexibleData);
-
-
-  // IMMUTABILITY & LIFECYCLE VARIABEL
-
-  // final:
-  // Nilai ditentukan saat runtime dan hanya dapat diisi satu kali.
-  final DateTime createdAt = DateTime.now();
-
-  // const:
-  // Nilai harus sudah diketahui saat compile-time.
-  const double fixedTax = 0.11;
-
-  print('Data dibuat: $createdAt');
-  print('Pajak tetap: $fixedTax');
-
-
-  // CONTOH IMMUTABLE CLASS
-
-  const CurrencyFormatter formatter =
-      CurrencyFormatter(symbol: 'Rp');
-
-  print(formatter.format(25000));
-}
-
-
-// CLASS UNTUK MATERI IMMUTABLE CLASS
-
-class CurrencyFormatter {
-  final String symbol;
-
-  const CurrencyFormatter({
-    required this.symbol,
-  });
-
-  String format(double value) {
-    return '$symbol ${value.toStringAsFixed(0)}';
-  }
 }

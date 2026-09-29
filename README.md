@@ -1,4 +1,4 @@
-# KB1185 - Aplikasi Mobile
+# Aplikasi Mobile
 
 Repository ini berisi tugas dan latihan mata kuliah **Aplikasi Mobile** menggunakan Dart dan Flutter.
 

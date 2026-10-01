@@ -1,266 +1,28 @@
-# Aplikasi Mobile
+# Pertemuan 1 - Dasar Dart
 
-Repository ini berisi tugas dan latihan mata kuliah **Aplikasi Mobile** menggunakan Dart dan Flutter.
+## Ringkasan
 
-## Pertemuan 1 - Dasar Dart
+1. **Explicit Typing**
+   Eksperimen deklarasi variabel dengan tipe data yang ditulis secara langsung seperti `String` (teks), `int` (angka bulat), `double` (angka desimal), dan `bool` (benar/salah). Variabel masih dapat diubah nilainya selama nilai baru memiliki tipe data yang sama.
 
-Materi pertemuan pertama: tipe data, null safety, variabel immutable, dan struktur data dasar Dart.
+2. **Sound Null Safety (? dan ??)**
+   Fitur Dart untuk mencegah penggunaan nilai `null` yang dapat menyebabkan error saat program berjalan. Variabel biasa bersifat *non-nullable*, sedangkan tanda `?` digunakan untuk membuat variabel yang boleh memiliki nilai `null`. Operator `??` digunakan untuk memberikan nilai alternatif ketika suatu variabel bernilai `null`.
 
-File latihan: `lib/week1.dart`
+3. **Final**
+   `final` digunakan untuk membuat variabel yang hanya dapat diberikan nilai satu kali. Nilainya ditentukan ketika program berjalan (*runtime*), sehingga cocok digunakan untuk data yang baru diketahui saat aplikasi dijalankan, seperti waktu transaksi menggunakan `DateTime.now()`.
 
----
+4. **Const**
+   `const` digunakan untuk nilai yang sudah diketahui dan bersifat tetap sejak *compile-time*. Nilainya tidak dapat diubah setelah ditentukan. Pada praktik digunakan untuk data seperti nilai pajak dan metode pembayaran.
 
-## 1. Explicit Typing
+5. **Late Modifier**
+   `late` digunakan ketika sebuah variabel non-nullable belum memiliki nilai saat dideklarasikan, tetapi nilainya akan diberikan sebelum digunakan. Pada praktik digunakan untuk menyimpan waktu masuk barang yang baru ditentukan kemudian.
 
-Penulisan tipe data secara langsung saat deklarasi variabel.
+6. **Tipe Data Koleksi (List, Set, Map)**
+   - **List**: Menyimpan banyak data secara berurutan. Data dapat diakses menggunakan indeks yang dimulai dari `0`.
+   - **Set**: Menyimpan kumpulan data yang unik. Nilai yang sama atau duplikat tidak disimpan lebih dari satu kali.
+   - **Map**: Menyimpan data dalam bentuk pasangan *key-value*. Pada praktik digunakan untuk menyimpan jadwal karyawan berdasarkan hari.
 
-```dart
-String menuName = 'Es Teh';
-int menuStock = 20;
-double menuPrice = 5000.0;
-bool menuAvailable = true;
-```
-
-Nilai variabel masih bisa diubah selama tipenya sama.
-
-```dart
-menuStock = 25;          // valid
-menuStock = 'dua puluh'; // error, tipe data harus int
-```
-
----
-
-## 2. Sound Null Safety
-
-Null safety mencegah variabel yang tidak boleh kosong bernilai `null`.
-
-### Non-Nullable
-
-```dart
-String itemName = 'Roti Cokelat';
-itemName = null; // error
-```
-
-### Nullable
-
-Gunakan tanda `?` jika variabel boleh bernilai `null`.
-
-```dart
-String? customerNote;
-
-customerNote = 'Tanpa gula';
-customerNote = null;
-```
-
-### Null-Aware Operator `??`
-
-Memberi nilai pengganti jika variabel bernilai `null`.
-
-```dart
-String noteToPrint = customerNote ?? 'Tidak ada catatan khusus';
-```
-
-### Null-Aware Access `?.`
-
-Menjalankan operasi hanya jika nilainya tidak `null`.
-
-```dart
-print(customerNote?.toUpperCase());
-```
-
-### Null Assertion Operator `!`
-
-Digunakan ketika yakin variabel nullable tidak bernilai `null`.
-
-```dart
-print(customerNote!.toUpperCase());
-```
-
-Gunakan dengan hati-hati karena akan error jika nilainya ternyata `null`.
-
----
-
-## 3. Final
-
-`final` hanya bisa diberi nilai satu kali. Nilainya ditentukan saat **runtime**.
-
-```dart
-final String transactionId = 'TRX-2026-001';
-final DateTime transactionTime = DateTime.now();
-
-transactionId = 'TRX-2026-002'; // error
-```
-
----
-
-## 4. Const
-
-`const` untuk nilai tetap yang sudah diketahui saat **compile-time**.
-
-```dart
-const double taxRate = 0.11;
-const String appCurrency = 'IDR';
-
-taxRate = 0.12; // error
-```
-
----
-
-## 5. Late
-
-`late` untuk variabel non-nullable yang nilainya diberikan setelah deklarasi, tetapi sebelum digunakan.
-
-```dart
-late String receiptNumber;
-
-receiptNumber = 'REC-${DateTime.now().millisecondsSinceEpoch}';
-
-print(receiptNumber);
-```
-
----
-
-# Tipe Data Dart
-
-## 6. String
-
-Menyimpan teks.
-
-```dart
-String studentName = 'Fadia';
-String studentAddress = 'Tangerang';
-
-print(studentName.toUpperCase());
-```
-
-String interpolation:
-
-```dart
-int studentAge = 20;
-
-print('Nama saya $studentName, umur saya $studentAge tahun');
-```
-
-## 7. int
-
-Bilangan bulat tanpa desimal.
-
-```dart
-int totalItems = 7;
-int rewardPoints = 1500;
-```
-
-## 8. double
-
-Bilangan desimal.
-
-```dart
-double packageWeight = 3.75;
-double productRating = 4.9;
-```
-
-## 9. num
-
-Dapat menyimpan `int` maupun `double`.
-
-```dart
-num productValue = 15000;
-
-productValue = 15500.50;
-```
-
-## 10. bool
-
-Hanya bernilai `true` atau `false`.
-
-```dart
-bool isLoggedIn = true;
-bool notificationEnabled = false;
-```
-
-## 11. List
-
-Kumpulan data berurutan, indeks dimulai dari `0`.
-
-```dart
-List<String> productList = [
-  'Botol Minum',
-  'Tas Belanja',
-  'Kotak Makan',
-];
-
-print(productList[0]);
-productList.add('Sedotan Stainless');
-```
-
-## 12. Set
-
-Kumpulan data unik (tanpa duplikat).
-
-```dart
-Set<String> categorySet = {
-  'Makanan',
-  'Minuman',
-  'Makanan', // hanya disimpan satu kali
-};
-```
-
-## 13. Map
-
-Menyimpan data dalam pasangan **key dan value**.
-
-```dart
-Map<String, dynamic> studentData = {
-  'nama': 'Fadia',
-  'umur': 20,
-  'aktif': true,
-};
-
-print(studentData['nama']);
-print(studentData['umur']);
-```
-
-## 14. Object
-
-Dapat menyimpan tipe apa pun, sehingga tipenya perlu diperiksa sebelum dipakai.
-
-```dart
-Object userData = 'Fadia';
-
-userData = 25;
-userData = true;
-
-if (userData is String) {
-  print(userData.toUpperCase());
-}
-```
-
----
-
-# Cara Menjalankan
-
-```bash
-dart run lib/week1.dart
-```
-
-Hasil `print()` akan tampil di Terminal.
-
----
-
-# Tools yang Digunakan
-
-- Flutter SDK
-- Dart
-- Visual Studio Code
-- DartPad
-- Git & GitHub
-
-Validasi instalasi:
-
-```bash
-git --version
-flutter --version
-dart --version
-flutter doctor
-flutter emulators
-flutter devices
+7. **Object & Dynamic**
+   Keduanya dapat digunakan untuk menyimpan data dengan tipe yang berbeda, tetapi memiliki perbedaan dalam pemeriksaan tipe.
+   - `Object`: Lebih aman karena operasi khusus terhadap data perlu dilakukan setelah tipe data diperiksa, misalnya menggunakan `is String`.
+   - `dynamic`: Lebih fleksibel karena tipe data dapat berubah-ubah, tetapi pemeriksaan tipe lebih longgar sehingga kesalahan dapat muncul saat program dijalankan. Penggunaannya sebaiknya dibatasi ketika tipe data sebenarnya sudah diketahui.
